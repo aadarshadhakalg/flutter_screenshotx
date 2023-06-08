@@ -1,0 +1,40 @@
+name: screenshotx
+description: A starting point for Dart libraries or applications.
+version: 1.0.0
+publish_to: none
+# repository: https://github.com/my_org/my_repo
+
+environment:
+  sdk: ^3.0.3
+  flutter: ">=3.3.0"
+
+flutter:
+  plugin:
+    platforms:
+      linux:
+        default_package: screenshotx_linux
+      macos:
+        default_package: screenshotx_macos
+      windows:
+        default_package: screenshotx_windows
+
+# Add regular dependencies here.
+dependencies:
+  flutter:
+    sdk: flutter
+  screenshotx_linux:
+    path: ../screenshotx_linux/
+  screenshotx_macos:
+    path: ../screenshotx_macos/
+  screenshotx_platform_interface:
+    path: ../screenshotx_platform_interface/
+  screenshotx_windows:
+    path: ../screenshotx_windows/
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mockito: 5.4.1
+  plugin_platform_interface: ^2.0.0
+  lints: ^2.0.0
+  test: ^1.21.0
