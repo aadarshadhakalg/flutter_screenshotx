@@ -1,39 +1,49 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# ScreenshotX
+[![pub package](https://img.shields.io/pub/v/screenshotx.svg)](https://pub.dev/packages/screenshotx)
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+The ScreenshotX package provides a cross-platform solution for capturing desktop screenshots and picking colors from the screen in Flutter applications.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+
+
+|             | Linux | macOS  | Windows |
+|:------------|:------|:-------|:--------|
+| **Support** |  ✅   |   ❌   |   ❌    |
+
+
+
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- Capture Screenshots
+- Pick Colors
+
+
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+To use the ScreenshotX plugin, add `screenshotx` as a dependency in your project's pubspec.yaml file.
+
+
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+1. Capture the full screen:
 
 ```dart
-const like = 'sample';
+Image? fullScreenImage = await screenshotX.captureFullScreen();
 ```
 
-## Additional information
+2. Pick color
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+```dart
+Color? pickedColor = await screenshotX.pickColor();
+```
+
+For more details on using the ScreenshotX package, check out the example provided in the [example](https://github.com/aadarshadhakalg/flutter_screenshotx/tree/main/screenshotx/example) directory.
+
+## Credits
+Created by [@aadarshadhakalg](https://twitter.com/aadarshadhakalg)
+
+
+Feel free to report any issues or contribute to the project on GitHub. We appreciate your feedback and contributions!

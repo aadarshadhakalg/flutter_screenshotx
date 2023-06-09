@@ -11,29 +11,9 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# ScreenshotX Plugin Platform Interface
 
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+This platform interface provides a common interface for the [ScreenshotX](https://github.com/aadarshadhakalg/flutter_screenshotx/tree/main/screenshotx) plugin, allowing platform-specific implementations to ensure compatibility with the plugin.
 
 ## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+To create a new platform-specific implementation for the ScreenshotX plugin, extend the ScreenshotXPlatform interface and implement the necessary behavior for your platform. When registering your plugin, set the default platform implementation by calling ScreenshotXPlatform.instance = MyPlatformScreenshotX().

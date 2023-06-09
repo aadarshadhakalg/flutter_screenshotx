@@ -1,8 +1,9 @@
 name: screenshotx_linux
-description: A new Flutter plugin project.
-version: 0.0.1
-homepage:
-publish_to: none
+description: Linux implementation of screenshotX plugin
+repository: https://github.com/aadarshadhakalg/flutter_screenshotx/tree/main/screenshotx_linux
+issue_tracker: https://github.com/aadarshadhakalg/flutter_screenshotx/issues
+
+version: 1.0.0
 
 environment:
   sdk: '>=3.0.3 <4.0.0'
@@ -14,8 +15,7 @@ dependencies:
   flutter:
     sdk: flutter
   plugin_platform_interface: ^2.0.2
-  screenshotx_platform_interface:
-    path: ../screenshotx_platform_interface/
+  screenshotx_platform_interface: ^1.0.0
   uuid: ^3.0.7
 
 dev_dependencies:

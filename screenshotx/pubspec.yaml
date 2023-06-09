@@ -1,8 +1,9 @@
 name: screenshotx
-description: A starting point for Dart libraries or applications.
+description: A flutter plugin to capture desktop screenshots and a color picker
+repository: https://github.com/aadarshadhakalg/flutter_screenshotx/tree/main/screenshotx
+issue_tracker: https://github.com/aadarshadhakalg/flutter_screenshotx/issues
+
 version: 1.0.0
-publish_to: none
-# repository: https://github.com/my_org/my_repo
 
 environment:
   sdk: ^3.0.3
@@ -13,23 +14,21 @@ flutter:
     platforms:
       linux:
         default_package: screenshotx_linux
-      macos:
-        default_package: screenshotx_macos
-      windows:
-        default_package: screenshotx_windows
+      # macos:
+      #   default_package: screenshotx_macos
+      # windows:
+      #   default_package: screenshotx_windows
 
 # Add regular dependencies here.
 dependencies:
   flutter:
     sdk: flutter
-  screenshotx_linux:
-    path: ../screenshotx_linux/
-  screenshotx_macos:
-    path: ../screenshotx_macos/
-  screenshotx_platform_interface:
-    path: ../screenshotx_platform_interface/
-  screenshotx_windows:
-    path: ../screenshotx_windows/
+  screenshotx_linux: ^1.0.0
+  # screenshotx_macos:
+  #   path: ../screenshotx_macos/
+  screenshotx_platform_interface: ^1.0.0
+  # screenshotx_windows:
+  #   path: ../screenshotx_windows/
 
 dev_dependencies:
   flutter_test:

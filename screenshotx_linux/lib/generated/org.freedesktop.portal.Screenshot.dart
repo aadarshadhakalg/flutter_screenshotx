@@ -18,13 +18,13 @@ class OrgFreedesktopPortalScreenshot extends DBusRemoteObject {
 
   /// Invokes org.freedesktop.portal.Screenshot.Screenshot()
   Future<DBusObjectPath> callScreenshot(
-      String parent_window, Map<String, DBusValue> options,
+      String parentWindow, Map<String, DBusValue> options,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {
     var result = await callMethod(
         'org.freedesktop.portal.Screenshot',
         'Screenshot',
-        [DBusString(parent_window), DBusDict.stringVariant(options)],
+        [DBusString(parentWindow), DBusDict.stringVariant(options)],
         replySignature: DBusSignature('o'),
         noAutoStart: noAutoStart,
         allowInteractiveAuthorization: allowInteractiveAuthorization);
@@ -33,13 +33,13 @@ class OrgFreedesktopPortalScreenshot extends DBusRemoteObject {
 
   /// Invokes org.freedesktop.portal.Screenshot.PickColor()
   Future<DBusObjectPath> callPickColor(
-      String parent_window, Map<String, DBusValue> options,
+      String parentWindow, Map<String, DBusValue> options,
       {bool noAutoStart = false,
       bool allowInteractiveAuthorization = false}) async {
     var result = await callMethod(
         'org.freedesktop.portal.Screenshot',
         'PickColor',
-        [DBusString(parent_window), DBusDict.stringVariant(options)],
+        [DBusString(parentWindow), DBusDict.stringVariant(options)],
         replySignature: DBusSignature('o'),
         noAutoStart: noAutoStart,
         allowInteractiveAuthorization: allowInteractiveAuthorization);

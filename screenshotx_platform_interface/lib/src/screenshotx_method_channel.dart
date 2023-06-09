@@ -1,8 +1,8 @@
 import 'package:flutter/services.dart';
 import 'dart:ui';
-import 'package:screenshotx_platform_interface/screenshotx_platform_interface.dart';
 
 import 'bytes_to_image.dart';
+import 'screenshotx_platform.dart';
 
 class MethodChannelScreenshotX implements ScreenshotXPlatform {
   final _methodChannel = const MethodChannel('screenshotx');
