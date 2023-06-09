@@ -11,7 +11,7 @@ class ScreenshotX {
     return ScreenshotXPlatform.instance.captureArea(x, y, height, width);
   }
 
-  Future<Color?> pickColor(int x, int y) async {
+  Future<Color?> pickColor([int? x, int? y]) async {
     return ScreenshotXPlatform.instance.pickColor(x, y);
   }
 }

@@ -18,6 +18,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _screenshotxLinuxPlugin = ScreenshotXLinux();
   Uint8List? imageBytes;
+  Color? pickedColor;
   @override
   void initState() {
     super.initState();
@@ -36,22 +37,39 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () async {
-            var image = await _screenshotxLinuxPlugin.captureFullScreen();
-            if (image != null) {
-              final pngBytes =
-                  await image.toByteData(format: ImageByteFormat.png);
-              imageBytes = Uint8List.view(pngBytes!.buffer);
-            }
-            setState(() {});
-          },
-          child: const Icon(Icons.camera),
+        floatingActionButton: Row(
+          children: [
+            FloatingActionButton(
+              onPressed: () async {
+                var color = await _screenshotxLinuxPlugin.pickColor();
+                if (color != null) {
+                  pickedColor = color;
+                }
+                setState(() {});
+              },
+              child: const Icon(Icons.camera),
+            ),
+            FloatingActionButton(
+              onPressed: () async {
+                var image = await _screenshotxLinuxPlugin.captureFullScreen();
+                if (image != null) {
+                  final pngBytes =
+                      await image.toByteData(format: ImageByteFormat.png);
+                  imageBytes = Uint8List.view(pngBytes!.buffer);
+                }
+                setState(() {});
+              },
+              child: const Icon(Icons.camera),
+            ),
+          ],
         ),
-        body: Center(
-          child: imageBytes != null
-              ? Image.memory(imageBytes!)
-              : const Text("No Screenshot Taken"),
+        body: ColoredBox(
+          color: pickedColor ?? Colors.white,
+          child: Center(
+            child: imageBytes != null
+                ? Image.memory(imageBytes!)
+                : const Text("No Screenshot Taken"),
+          ),
         ),
       ),
     );

@@ -14,7 +14,12 @@ class ScreenshotXLinux extends ScreenshotXPlatform {
   }
 
   String? _serviceName;
-  final _token = const Uuid()
+  final _tokenScreenshot = const Uuid()
+      .v4()
+      .replaceAll('-', '')
+      .replaceAll('{', '')
+      .replaceAll('}', '');
+  final _tokenPickColor = const Uuid()
       .v4()
       .replaceAll('-', '')
       .replaceAll('{', '')
@@ -32,7 +37,24 @@ class ScreenshotXLinux extends ScreenshotXPlatform {
     await object.callScreenshot(
       "",
       {
-        "handle_token": DBusString(_token),
+        "handle_token": DBusString(_tokenScreenshot),
+        "interactive": const DBusBoolean(false),
+      },
+    );
+  }
+
+  Future<void> _pickColor() async {
+    var object = OrgFreedesktopPortalScreenshot(
+      _client,
+      'org.freedesktop.portal.Desktop',
+      path: DBusObjectPath(
+        "/org/freedesktop/portal/desktop",
+      ),
+    );
+    await object.callPickColor(
+      "",
+      {
+        "handle_token": DBusString(_tokenPickColor),
         "interactive": const DBusBoolean(false),
       },
     );
@@ -57,7 +79,7 @@ class ScreenshotXLinux extends ScreenshotXPlatform {
       _client,
       'org.freedesktop.portal.Desktop',
       path: DBusObjectPath(
-          "/org/freedesktop/portal/desktop/request/$_serviceName/$_token"),
+          "/org/freedesktop/portal/desktop/request/$_serviceName/$_tokenScreenshot"),
     );
 
     RegExp filepathReg =
@@ -84,8 +106,35 @@ class ScreenshotXLinux extends ScreenshotXPlatform {
   }
 
   @override
-  Future<Color?> pickColor(int x, int y) {
-    throw UnimplementedError();
+  Future<Color?> pickColor([int? x, int? y]) async {
+    if (_serviceName == null) {
+      _serviceName = await _client.nameAcquired.first;
+      String formattedServiceName =
+          _serviceName!.replaceAll(':', '').replaceAll('.', '_');
+      _serviceName = formattedServiceName;
+    }
+
+    var request = OrgFreedesktopPortalRequest(
+      _client,
+      'org.freedesktop.portal.Desktop',
+      path: DBusObjectPath(
+          "/org/freedesktop/portal/desktop/request/$_serviceName/$_tokenPickColor"),
+    );
+
+    _pickColor();
+
+    Color? image = await request.response.asyncMap((event) async {
+      DBusStruct colorResponse = event.results['color'] as DBusStruct;
+      Color color = Color.fromRGBO(
+          (colorResponse.children[0].asDouble() * 255).toInt(),
+          (colorResponse.children[1].asDouble() * 255).toInt(),
+          (colorResponse.children[2].asDouble() * 255).toInt(),
+          1);
+
+      return color;
+    }).first;
+
+    return image;
   }
 
   void close() {

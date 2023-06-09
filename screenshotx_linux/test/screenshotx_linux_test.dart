@@ -19,7 +19,7 @@ class MockScreenshotxLinuxPlatform
   }
 
   @override
-  Future<Color?> pickColor(int x, int y) async {
+  Future<Color?> pickColor([int? x, int? y]) async {
     return null;
   }
 }

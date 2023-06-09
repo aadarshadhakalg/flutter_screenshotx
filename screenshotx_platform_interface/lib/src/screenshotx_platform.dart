@@ -23,7 +23,10 @@ abstract class ScreenshotXPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<Color?> pickColor(int x, int y);
+  /// Pick color from desktop. In windows and mac os the position parameters
+  /// x and y is mandatory. In Linux, the position parameters are ignored and
+  /// a position cursor is displayed.
+  Future<Color?> pickColor([int? x, int? y]);
   Future<Image?> captureFullScreen();
   Future<Image?> captureArea(int x, int y, int height, int width);
 }

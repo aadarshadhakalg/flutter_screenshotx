@@ -34,7 +34,9 @@ class ScreenshotxWindows extends ScreenshotXPlatform {
   }
 
   @override
-  Future<Color?> pickColor(int x, int y) async {
+  Future<Color?> pickColor([int? x, int? y]) async {
+    assert(x != null);
+    assert(y != null);
     Map<String, int>? result =
         await _methodChannel.invokeMethod<Map<String, int>?>(
       'pickColor',
